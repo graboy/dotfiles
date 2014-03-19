@@ -1,0 +1,168 @@
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+set $mod Mod4
+
+# Font for window titles.
+font -*-dina-medium-r-*-*-8-*-*-*-*-*-iso8859-*
+
+# class                  border  backg.  text    indicator
+client.focused           #bbbbbb #cccccc #333333 #252525
+client.focused_inactive  #333333 #222222 #888888 #252525
+client.unfocused         #333333 #222222 #888888 #252525
+client.urgent            #2f343a #900000 #ffffff #900000
+
+new_float pixel 1
+new_window pixel 1
+hide_edge_borders vertical
+
+for_window [class="^Conky$"] floating enable, border none
+
+exec_always compton # -d --vsync opengl
+
+# kill old instances, if any, start new conky
+exec_always pkill conky; conky
+
+# Volumectl
+bindsym XF86AudioRaiseVolume exec amixer -q sset Master 1%+
+bindsym XF86AudioLowerVolume exec amixer -q sset Master 1%-
+
+
+# start xcmenu daemon
+exec_always xcmenu --daemon --dmenu
+
+# Yank primary sel to clipboard
+bindsym $mod+y exec xcmenuctrl -spc
+
+# Bring up xcmenu
+bindsym $mod+p exec xcmenuctrl
+
+# Take screenshot
+bindsym PrintScreen exec scrot -e mv *scrot.png ~/img/scrot/
+
+bindsym $mod+o exec sh -e ~/.wm_scripts/toggle-touchpad.sh
+
+
+# use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec urxvtc
+
+# start ranger in terminal
+bindsym $mod+backslash exec urxvtc -e ranger
+
+# kill focused window
+bindsym $mod+Shift+q kill window
+
+# start dwb
+bindsym $mod+c exec dwb
+
+# TODO tweak this
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='dmenu -i -f -b -fn -*-dina-medium-r-*-*-8-*-*-*-*-*-iso8859-* -nb "#222" -nf "#fff" -sb "#555" -sf "#fff"'
+
+# alternatively:
+# bindsym $mod+d exec dmenu_run
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# split in horizontal orientation
+bindsym $mod+b split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+bindsym $mod+Shift+a focus child
+
+# move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
+
+# switch to workspace
+
+#workaround to avoid weird first workspace
+bindsym workaround workspace 1
+bindsym $mod+1 workspace 1; [class="^Conky$"] move workspace 1; focus tiling
+bindsym $mod+2 workspace 2; [class="^Conky$"] move workspace 2; focus tiling
+bindsym $mod+3 workspace 3; [class="^Conky$"] move workspace 3; focus tiling
+bindsym $mod+4 workspace 4; [class="^Conky$"] move workspace 4; focus tiling
+bindsym $mod+5 workspace 5; [class="^Conky$"] move workspace 5; focus tiling
+bindsym $mod+6 workspace 6; [class="^Conky$"] move workspace 6; focus tiling
+bindsym $mod+7 workspace 7; [class="^Conky$"] move workspace 7; focus tiling
+bindsym $mod+8 workspace 8; [class="^Conky$"] move workspace 8; focus tiling
+bindsym $mod+9 workspace 9; [class="^Conky$"] move workspace 9; focus tiling
+bindsym $mod+0 workspace 10; [class="^Conky$"] move workspace 10; focus tiling
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -b 'Yes' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+        bindsym h           resize shrink width 10 px or 10 ppt
+        bindsym j           resize grow height 10 px or 10 ppt
+        bindsym k           resize shrink height 10 px or 10 ppt
+        bindsym l           resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+    status_command i3blocks
+}

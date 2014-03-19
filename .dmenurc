@@ -1,0 +1,1 @@
+XCMENUCTRL_DMENU='dmenu -p -i -f -l 15 -fn -*-dina-medium-r-*-*-8-*-*-*-*-*-iso8859-* -nb #222222 -nf #888888 -sb #555555 -sf #ffffff'

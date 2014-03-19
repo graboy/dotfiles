@@ -1,0 +1,81 @@
+#!/usr/bin/conky -d -c
+alignment br
+background no
+border_width 0
+border_inner_margin 0
+border_outer_margin 0
+default_bar_size 0 0
+cpu_avg_samples 2
+default_color 000000
+default_outline_color 000000
+default_shade_color 000000
+double_buffer yes
+draw_borders no
+draw_graph_borders no
+draw_outline no
+draw_shades no
+gap_x 0
+gap_y 1
+max_specials 1024
+max_user_text 3000
+maximum_width 1190
+minimum_size 0
+net_avg_samples 2
+no_buffers yes
+override_utf8_locale yes
+own_window yes
+own_window_title status-bar-conky
+own_window_hints undecorated,below,skip_taskbar,skip_pager,sticky
+own_window_transparent no
+own_window_type desktop
+pad_percents 0
+short_units yes
+stippled_borders 3
+text_buffer_size 8000
+total_run_times 0
+update_interval 1.0
+uppercase no
+use_spacer right
+use_xft no
+
+# White
+color0 FFFFFF
+
+# Red
+color1 FF0000
+
+# Green
+color2 00ff00
+
+# Grey
+color3 888888
+
+# Yellow
+color4 ffd800
+
+# Orange
+color5 ffaa00
+
+# Spacer
+template0 ${color3}|${color0}
+
+# Network
+template1 ${if_up \1}${color2}UP${color0} ${upspeed \1} ${upspeedgraph \1 4,60 000000 000000} ${downspeed \1} ${downspeedgraph \1 4,60 000000 000000}${else}${color1}DOWN${color0}${endif}
+
+# CPU usage
+template2 ${if_match ${cpu \1} >= 25}${color4}${endif}${if_match ${cpu \1} >= 50}${color5}${endif}${if_match ${cpu \1} >= 80}${color1}${endif}${cpu \1}${color0}
+
+# Battery
+template3 ${if_match ${battery_percent BAT0} <= 10}${color1}${endif}${if_match ${battery_percent} >= 95}${color2}${endif}${battery_percent BAT0} ${battery_bar 4,80 BAT0}
+
+
+# Memory
+template4 ${if_match ${memperc} > 70}${color4}${endif}${if_match ${memperc} > 80}${color5}${endif}${if_match ${memperc} > 90}${color1}${endif}${mem} ${membar 4,80}${color0}
+
+# If all networks are up
+template 
+
+# lua_load /home/didisoft/.conky/lua.lua
+
+TEXT
+WLAN: ${template1 wlp3s0} $template0 ${template1 enp0s25} $template0 ${template4} $template0 ${template3} $template0 ${fs_used /} / ${fs_size /}$template0 ${template2 cpu0} ${template2 cpu1} ${template2 cpu2} ${template2 cpu3} $template0 ${acpitemp}C $template0 ${time %B %d, %Y} $template0 ${time %H:%M:%S} 

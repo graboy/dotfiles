@@ -1,0 +1,46 @@
+! URxvt.geometry: 80x25
+
+dzen2.font:       -*-dina-medium-r-*-*-10-*-*-*-*-*-iso8859-*
+dzen2.foreground: #22EE11
+dzen2.background: black
+
+URxvt*font: -*-dina-medium-r-*-*-10-*-*-*-*-*-iso8859-*
+URxvt*boldFont: -*-dina-bold-r-*-*-10-*-*-*-*-*-iso8859-*
+URxvt*italicFont: -*-dina-medium-i-*-*-10-*-*-*-*-*-iso8859-*
+URxvt*boldItalicFont: -*-dina-bold-i-*-*-10-*-*-*-*-*-iso8859-*
+URxvt*inheritPixmap: true
+! URxvt*tintColor: gray30
+URxvt.internalBorder: 0
+! URxvt.jumpScroll: true
+
+URxvt.perl-ext-common: default,matcher,urxvt-vtwheel,searchable-scrollback
+URxvt*urlLauncher: /usr/bin/dwb -n
+URxvt.matcher.button: 1
+
+URxvt.pointerBlank: true
+URxvt.saveLines: 4000
+URxvt.secondaryScroll: true
+URxvt.scrollBar: false
+URxvt.scrollTtyKeypress: true
+URxvt.scrollWithBuffer: true
+URxvt*background: #363636
+URxvt*foreground: #eeeeec
+! URxvt*cursorColor:
+! URxvt*colorUL: #c5f779
+! URxvt*underlineColor: #c5f779
+*color0:  #2E3436
+*color1:  #a40000
+*color2:  #4E9A06
+*color3:  #C4A000
+*color4:  #3465A4
+*color5:  #75507B
+*color6:  #ce5c00
+*color7:  #babdb9
+*color8:  #555753
+*color9:  #EF2929
+*color10: #8AE234
+*color11: #FCE94F
+*color12: #729FCF
+*color13: #AD7FA8
+*color14: #fcaf3e
+*color15: #EEEEEC
